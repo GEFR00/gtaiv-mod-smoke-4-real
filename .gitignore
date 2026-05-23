@@ -1,0 +1,18 @@
+# Visual Studio metadata
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+
+# Rider / ReSharper
+.idea/
+*.DotSettings.user
+
+# Windows
+Thumbs.db
+Desktop.ini
