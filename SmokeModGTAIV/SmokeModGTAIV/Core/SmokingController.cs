@@ -46,6 +46,11 @@ namespace SmokeModGTAIV.Core
 
             if (input == SmokingInput.ActionKey && _state == SmokingState.Idle)
             {
+                if (player.isInWater)
+                {
+                    ShowHud("~r~No puedes fumar en el agua", 2000);
+                    return;
+                }
                 TransitionTo(SmokingState.LoadingAnims, player);
                 return;
             }
@@ -70,6 +75,13 @@ namespace SmokeModGTAIV.Core
             if (_state != SmokingState.Idle && !player.isAliveAndWell)
             {
                 ForceCleanup(player);
+                return;
+            }
+
+            if (_state != SmokingState.Idle && _state != SmokingState.Extinguishing && player.isInWater)
+            {
+                ForceCleanup(player);
+                ShowHud("~b~Cigarro apagado", 2000);
                 return;
             }
 
