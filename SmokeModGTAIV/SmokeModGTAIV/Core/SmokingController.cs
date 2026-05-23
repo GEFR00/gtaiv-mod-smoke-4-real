@@ -11,7 +11,8 @@ namespace SmokeModGTAIV.Core
 {
     internal class SmokingController
     {
-        private const int ExtinguishDurationMs = 1500;
+        private const int ExtinguishDurationMs  = 1500;
+        private const int AnimLoadTimeoutMs     = 2000;
 
         private readonly SmokeConfig      _config;
         private readonly ISmokingAnimator _animator;
@@ -90,7 +91,7 @@ namespace SmokeModGTAIV.Core
         private void TickLoadingAnims(Ped player)
         {
             _animator.RequestAnims();
-            if (_animator.AreAnimsLoaded())
+            if (_animator.AreAnimsLoaded() || ElapsedMs() >= AnimLoadTimeoutMs)
                 TransitionTo(SmokingState.Lighting, player);
         }
 
